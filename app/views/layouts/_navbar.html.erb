@@ -1,0 +1,29 @@
+<div class="container">
+<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+  <div class="col-md-3 mb-2 mb-md-0">
+    <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+      <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+    </a>
+  </div>
+
+  <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+    <li><%= link_to "Home", root_path, :class => "nav-link px-2 link-secondary" %></li>
+    <li><%= link_to "Viajes", travels_path, :class => "nav-link px-2 link-secondary" %></li>
+    <li><%= link_to "Destinos", destinies_path, :class => "nav-link px-2 link-secondary" %></li>
+    <li><a href="#" class="nav-link px-2">Publicación</a></li>
+    <li><a href="#" class="nav-link px-2">About</a></li>
+  </ul>
+
+  <div class="col-md-3 text-end">
+  <% if current_user %>    
+    <%= link_to "Edit Account", edit_user_registration_path, :class => "btn btn-primary" %>
+    <%= button_to "Sign Out", destroy_user_session_path, method: :delete, :class => "btn btn-primary" %>
+  <% else %>
+    <%= link_to "Sign Up", new_user_registration_path, :class => "btn btn-primary" %>
+    <%= link_to "Sign In", new_user_session_path, :class => "btn btn-primary" %>
+  <% end %>
+  </div>
+</header>
+</div>
+
+<div class="b-example-divider"></div>

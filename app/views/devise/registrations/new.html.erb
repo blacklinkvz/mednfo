@@ -1,0 +1,69 @@
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label :Nombre %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+  
+    <div class="field">
+    <%= f.label :Segundo_nombre %><br />
+    <%= f.text_field :s_name, autofocus: true %>
+  </div>
+    
+    <div class="field">
+    <%= f.label :Apellido_paterno %><br />
+    <%= f.text_field :lastname, autofocus: true %>
+  </div>
+    
+    <div class="field">
+    <%= f.label :Apellido_materno %><br />
+    <%= f.text_field :s_lastname, autofocus: true %>
+  </div>
+    
+    <div class="field">
+    <%= f.label :Rut %><br />
+    <%= f.text_field :rut, autofocus: true %>
+  </div>
+    
+    <div class="field">
+    <%= f.label :Pasaporte %><br />
+    <%= f.text_field :passport, autofocus: true %>
+  </div>
+
+    <div class="field">
+    <%= f.label :País_de_nacimiento %>
+    <%= f.collection_select :country_id, @countries, :id, :name, prompt: "Selecciona un país", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Tipo_de_sangre %>
+    <%= f.collection_select :bloodtype_id, @bloodtypes, :id, :name, prompt: "Selecciona tu tipo de sangre", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Conseña %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Confirmar_contraseña %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Registrar", :class => "btn btn-primary" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>

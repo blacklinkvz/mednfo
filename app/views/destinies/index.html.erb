@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Destinies</h1>
+
+<div id="destinies">
+  <% @destinies.each do |destiny| %>
+    <%= render destiny %>
+    <p>
+      <%= link_to "Show this destiny", destiny %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New destiny", new_destiny_path %>
