@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :contacts
   resources :destinies
 
   devise_for :users, controllers:{ registrations: 'user/registrations'}

@@ -10,11 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_12_214029) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_14_175646) do
   create_table "bloodtypes", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "contacts", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.string "lastname"
+    t.string "email"
+    t.integer "phone"
+    t.bigint "user_id", null: false
+    t.bigint "country_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["country_id"], name: "index_contacts_on_country_id"
+    t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 
   create_table "countries", charset: "utf8mb4", force: :cascade do |t|
@@ -93,6 +106,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_12_214029) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "contacts", "countries"
+  add_foreign_key "contacts", "users"
   add_foreign_key "countries", "languages"
   add_foreign_key "destinies", "countries"
   add_foreign_key "destinies", "travels"
