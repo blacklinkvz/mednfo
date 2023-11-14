@@ -6,4 +6,6 @@ class User < ApplicationRecord
   
   belongs_to :country
   belongs_to :bloodtype
+  has_many :contact
+  has_many :articles
 end

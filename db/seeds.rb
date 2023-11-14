@@ -9263,3 +9263,28 @@ Disease.create([
   { code: 'Z999',  name: "DEPENDENCIA DE MÁQUINA Y DISPOSITIVO CAPACITANTE, NO ESPECIFICADA" }
 
 ])
+
+Unit.create([
+  { name: 'cc / cm³' },
+  { name: 'cda' },
+  { name: 'cdita' },
+  { name: 'dr' },
+  { name: 'fl oz' },
+  { name: 'g' },
+  { name: 'gal' },
+  { name: 'got' },
+  { name: 'Kg' },
+  { name: 'L' },
+  { name: 'lb' },
+  { name: 'mcg / µg' },
+  { name: 'mcHA' },
+  { name: 'mg' },
+  { name: 'mgota / µgota' },
+  { name: 'mL' },
+  { name: 'ng' },
+  { name: 'oz' },
+  { name: 'Pt' },
+  { name: 'qt' },
+  { name: 's.ap / ℈' },
+  { name: 'µL' }
+])
