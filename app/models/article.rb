@@ -1,6 +1,7 @@
 class Article < ApplicationRecord
   belongs_to :user
   belongs_to :travel
-  has_and_belongs_to_many :diseases
-  has_and_belongs_to_many :medicaments
+  has_many :diseases, through: :articles_diseases
+  has_many :medicaments, through: :articles_medicaments
+  has_many :contacts, through: :articles_contacts
 end

@@ -1,0 +1,27 @@
+<%= form_with(model: articles_medicament) do |form| %>
+  <% if articles_medicament.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(articles_medicament.errors.count, "error") %> prohibited this articles_medicament from being saved:</h2>
+
+      <ul>
+        <% articles_medicament.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :article_id, style: "display: block" %>
+    <%= form.text_field :article_id %>
+  </div>
+
+  <div>
+    <%= form.label :medicament_id, style: "display: block" %>
+    <%= form.text_field :medicament_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

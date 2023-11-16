@@ -72,3 +72,5 @@ end
 gem "devise", "~> 4.9"
 
 gem "bootstrap-icons-helper"
+
+gem 'sidekiq'

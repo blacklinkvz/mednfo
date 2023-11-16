@@ -1,17 +1,17 @@
 <div id="<%= dom_id article %>">
   <p>
-    <strong>Title:</strong>
+    <strong>Titulo:</strong>
     <%= article.title %>
   </p>
 
   <p>
-    <strong>User:</strong>
-    <%= article.user_id %>
+    <strong>Usuario:</strong>
+    <%= article.user.name %> <%= article.user.lastname %>
   </p>
 
   <p>
-    <strong>Travel:</strong>
-    <%= article.travel_id %>
+    <strong>Viaje:</strong>
+    <%= article.travel.name %>
   </p>
 
 </div>

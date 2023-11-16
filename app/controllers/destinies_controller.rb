@@ -1,4 +1,5 @@
 class DestiniesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_destiny, only: %i[ show edit update destroy ]
 
   # GET /destinies or /destinies.json
@@ -72,5 +73,9 @@ class DestiniesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def destiny_params
       params.require(:destiny).permit(:start_date, :fishis_date, :country_id, :travel_id)
+    end
+
+    def authenticate_user!
+      redirect_to new_user_session_path, alert: "Tienes que registrarte o ingresar para continuar" unless user_signed_in?
     end
 end

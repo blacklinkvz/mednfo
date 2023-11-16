@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_14_225002) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_15_192440) do
   create_table "articles", charset: "utf8mb4", force: :cascade do |t|
     t.string "title"
     t.bigint "user_id", null: false
@@ -19,6 +19,33 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_14_225002) do
     t.datetime "updated_at", null: false
     t.index ["travel_id"], name: "index_articles_on_travel_id"
     t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
+  create_table "articles_contacts", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "article_id", null: false
+    t.bigint "contact_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_articles_contacts_on_article_id"
+    t.index ["contact_id"], name: "index_articles_contacts_on_contact_id"
+  end
+
+  create_table "articles_diseases", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "article_id", null: false
+    t.bigint "disease_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_articles_diseases_on_article_id"
+    t.index ["disease_id"], name: "index_articles_diseases_on_disease_id"
+  end
+
+  create_table "articles_medicaments", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "article_id", null: false
+    t.bigint "medicament_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_articles_medicaments_on_article_id"
+    t.index ["medicament_id"], name: "index_articles_medicaments_on_medicament_id"
   end
 
   create_table "bloodtypes", charset: "utf8mb4", force: :cascade do |t|
@@ -133,6 +160,12 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_14_225002) do
 
   add_foreign_key "articles", "travels"
   add_foreign_key "articles", "users"
+  add_foreign_key "articles_contacts", "articles"
+  add_foreign_key "articles_contacts", "contacts"
+  add_foreign_key "articles_diseases", "articles"
+  add_foreign_key "articles_diseases", "diseases"
+  add_foreign_key "articles_medicaments", "articles"
+  add_foreign_key "articles_medicaments", "medicaments"
   add_foreign_key "contacts", "countries"
   add_foreign_key "contacts", "users"
   add_foreign_key "countries", "languages"
