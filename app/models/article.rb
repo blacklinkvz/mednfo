@@ -4,4 +4,6 @@ class Article < ApplicationRecord
   has_many :diseases, through: :articles_diseases
   has_many :medicaments, through: :articles_medicaments
   has_many :contacts, through: :articles_contacts
+  has_and_belongs_to_many :diseases
+
 end

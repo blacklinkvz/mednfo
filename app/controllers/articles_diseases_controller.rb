@@ -1,9 +1,12 @@
 class ArticlesDiseasesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_articles_disease, only: %i[ show edit update destroy ]
 
   # GET /articles_diseases or /articles_diseases.json
   def index
     @articles_diseases = ArticlesDisease.all
+    @diseases = Disease.all
+    @articles = Article.where(user_id: current_user.id)
   end
 
   # GET /articles_diseases/1 or /articles_diseases/1.json
@@ -13,15 +16,21 @@ class ArticlesDiseasesController < ApplicationController
   # GET /articles_diseases/new
   def new
     @articles_disease = ArticlesDisease.new
+    @diseases = Disease.all
+    @articles = Article.where(user_id: current_user.id)
   end
 
   # GET /articles_diseases/1/edit
   def edit
+    @articles = Article.where(user_id: current_user.id)
+    @diseases = Disease.all
   end
 
   # POST /articles_diseases or /articles_diseases.json
   def create
     @articles_disease = ArticlesDisease.new(articles_disease_params)
+    @diseases = Disease.all
+    @articles = Article.where(user_id: current_user.id)
 
     respond_to do |format|
       if @articles_disease.save
@@ -36,6 +45,7 @@ class ArticlesDiseasesController < ApplicationController
 
   # PATCH/PUT /articles_diseases/1 or /articles_diseases/1.json
   def update
+    @articles = Article.where(user_id: current_user.id)
     respond_to do |format|
       if @articles_disease.update(articles_disease_params)
         format.html { redirect_to articles_disease_url(@articles_disease), notice: "Articles disease was successfully updated." }
@@ -66,5 +76,9 @@ class ArticlesDiseasesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def articles_disease_params
       params.require(:articles_disease).permit(:article_id, :disease_id)
+    end
+    
+    def authenticate_user!
+      redirect_to new_user_session_path, alert: "Tienes que registrarte o ingresar para continuar" unless user_signed_in?
     end
 end

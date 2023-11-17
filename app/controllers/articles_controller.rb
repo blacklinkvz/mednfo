@@ -1,18 +1,24 @@
 class ArticlesController < ApplicationController
+  before_action :authenticate_user!, except: [:show]
   before_action :set_article, only: %i[ show edit update destroy ]
 
   # GET /articles or /articles.json
   def index
     @articles = Article.where(user_id: current_user.id)
+    @diseases = Disease.all 
   end
 
   # GET /articles/1 or /articles/1.json
   def show
+    @articles = Article.find(params[:id])
+    @diseases = @article.diseases
+    @destinies = @article.travel.destinies
   end
 
   # GET /articles/new
   def new
     @article = Article.new
+    @diseases = Disease.all
   end
 
   # GET /articles/1/edit
@@ -23,6 +29,7 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params.merge(user_id: current_user.id))
     @travel = Travel.where(user_id: current_user.id)
+    @diseases = Disease.all
 
     respond_to do |format|
       if @article.save
@@ -67,5 +74,8 @@ class ArticlesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def article_params
       params.require(:article).permit(:title, :user_id, :travel_id)
+    end
+    def authenticate_user!
+      redirect_to new_user_session_path, alert: "Tienes que registrarte o ingresar para continuar" unless user_signed_in?
     end
 end
