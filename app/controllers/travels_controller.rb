@@ -12,6 +12,7 @@ class TravelsController < ApplicationController
   # GET /travels/1 or /travels/1.json
   def show
     #Evitamos que se puedan ver viajes de otros usuarios deiferentes al current_user
+    @destinies = @travel.destinies
     @travel = Travel.find(params[:id])
       if @travel.user_id != current_user.id
         redirect_to root_path, notice: "No tienes acceso a este viaje"

@@ -1,14 +1,12 @@
-<p style="color: green"><%= notice %></p>
+<div class="container py-3">
+  <main>
+    
+    <%= link_to "Nuevo destino", new_destiny_path, :class => "btn btn-sm btn-primary rounded-pill px-2" %>
+    <% @destinies.each do |destiny| %>
+      <p>  
+        <%= render destiny %>
+      </p>
+          <% end %>
+    </div>
+  </footer>
 
-<h1>Destinies</h1>
-
-<div id="destinies">
-  <% @destinies.each do |destiny| %>
-    <%= render destiny %>
-    <p>
-      <%= link_to "Show this destiny", destiny %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New destiny", new_destiny_path %>

@@ -10,7 +10,15 @@
            <li>Fecha salida: <%= destiny.start_date.strftime("%d-%m-%Y") %></li>
            <li>Fecha regreso: <%= destiny.fishis_date.strftime("%d-%m-%Y") %></li>
          </ul>
-           <%= link_to "Ver detalle", destiny, :class => "w-30 btn btn-sm btn-primary rounded-pill px-2" %>
+         <div class="btn-group gap-2">
+          <% if current_user %>
+            <%= link_to "Editar destino", edit_destiny_path(@destiny), :class =>"btn btn-sm btn-warning rounded-pill px-2" %>
+            <%= button_to "Eliminar destino", @destiny, method: :delete, :class =>"btn btn-sm btn-danger rounded-pill px-2" %>
+            <%= link_to "Volver a lista de destinos", destinies_path, :class =>"btn btn-sm btn-info rounded-pill px-2" %>
+          <% else %>
+            <%= link_to "Volver a lista de destinos", destinies , :class =>"btn btn-sm btn-info rounded-pill px-2" %>
+          <% end %>
+        </div>
        </div>
      </div>
    </div>

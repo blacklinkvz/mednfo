@@ -1,69 +1,63 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<div class="container px-5 my-5">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :Nombre %><br />
-    <%= f.text_field :name, autofocus: true %>
-  </div>
-  
-    <div class="field">
-    <%= f.label :Segundo_nombre %><br />
-    <%= f.text_field :s_name, autofocus: true %>
-  </div>
-    
-    <div class="field">
-    <%= f.label :Apellido_paterno %><br />
-    <%= f.text_field :lastname, autofocus: true %>
-  </div>
-    
-    <div class="field">
-    <%= f.label :Apellido_materno %><br />
-    <%= f.text_field :s_lastname, autofocus: true %>
-  </div>
-    
-    <div class="field">
-    <%= f.label :Rut %><br />
-    <%= f.text_field :rut, autofocus: true %>
-  </div>
-    
-    <div class="field">
-    <%= f.label :Pasaporte %><br />
-    <%= f.text_field :passport, autofocus: true %>
-  </div>
-
-    <div class="field">
-    <%= f.label :País_de_nacimiento %>
-    <%= f.collection_select :country_id, @countries, :id, :name, prompt: "Selecciona un país", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :Tipo_de_sangre %>
-    <%= f.collection_select :bloodtype_id, @bloodtypes, :id, :name, prompt: "Selecciona tu tipo de sangre", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :Conseña %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :Confirmar_contraseña %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Registrar", :class => "btn btn-primary" %>
-  </div>
+  <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+      <div class="form-floating mb-3">
+          <%= f.text_field :name, autofocus: true, :class => "form-control", id: "Nombre", placeholder: "Nombre" %>
+          <%= f.label :floatingName, "Nombre" %>
+      </div>
+      <div class="form-floating mb-3">
+        <%= f.text_field :s_name, autofocus: true, :class => "form-control", id: "Segundo_nombre", placeholder: "Segundo nombre" %>
+        <%= f.label :Segundo_nombre, "Segundo nombre" %>
+      </div>
+      <div class="form-floating mb-3">
+        <%= f.text_field :lastname, autofocus: true, :class => "form-control", id: "Apellido_paterno", placeholder: "Apellido paterno" %>
+        <%= f.label :Apellido_paterno, "Apellido paterno" %>
+      </div>
+      <div class="form-floating mb-3">
+        <%= f.text_field :s_lastname, autofocus: true, :class => "form-control", id: "Apellido_materno", placeholder: "Apellido materno" %>
+        <%= f.label :Apellido_materno, "Apellido materno" %>
+      </div>
+      <div class="form-floating mb-3">
+        <%= f.text_field :rut, autofocus: true, :class => "form-control", id: "Rut", placeholder: "Rut" %>
+        <%= f.label :Rut, "Rut" %>
+      </div>
+      <div class="form-floating mb-3">
+        <%= f.text_field :passport, autofocus: true, :class => "form-control", id: "Pasaporte", placeholder: "Pasaporte" %>
+        <%= f.label :Pasaporte, "Pasaporte" %>
+      </div>
+      <div class="form-floating mb-3">
+        <%= f.collection_select :country_id, @countries, :id, :name, {:include_blank => 'País'}, {:class => 'form-select'} %>
+      </div>
+      <div class="form-floating mb-3">
+        <%= f.collection_select :bloodtype_id, @bloodtypes, :id, :name, {:include_blank => 'Tipo de sangre'}, {:class => 'form-select'} %>
+      </div>
+      <div class="form-floating mb-3">
+        <%= f.email_field :email, autofocus: true, :class => "form-control", id: "email", placeholder: "email" %>
+        <%= f.label :email, "Email" %>
+      </div>
+      <div class="form-floating mb-3">
+        <%= f.password_field :password, autocomplete: "new-password", :class => "form-control", id: "contraseña", placeholder: "Contraseña" %>
+        <%= f.label :Conseña, "Contraseña (mínimo 6 caracteres)" %>
+      </div>
+      <div class="form-floating mb-3">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", :class => "form-control", id: "Confirmar_contraseña", placeholder: "Confirmar contraseña" %>
+        <%= f.label :Confirmar_contraseña, "Confirmar contraseña" %>
+      </div>
+      <div class="d-none" id="submitSuccessMessage">
+          <div class="text-center mb-3">
+              <div class="fw-bolder">Form submission successful!</div>
+              <p>To activate this form, sign up at</p>
+              <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+          </div>
+      </div>
+      <div class="d-none" id="submitErrorMessage">
+          <div class="text-center text-danger mb-3">Error sending message!</div>
+      </div>
+      <div class="d-grid">
+        <%= f.submit "Registrar", :class => "btn btn-primary w-100 py-2 rounded-pill" %>
+      </div>
+  </form>
+</div>
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 <% end %>
-
-<%= render "devise/shared/links" %>

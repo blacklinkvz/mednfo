@@ -20,6 +20,9 @@ class DestiniesController < ApplicationController
 
   # GET /destinies/1/edit
   def edit
+    @destiny = Destiny.find(params[:id])
+    @country = Country.find_by(id: @destiny.country_id)
+    @travel = Travel.find_by(id: @destiny.travel_id)
   end
 
   # POST /destinies or /destinies.json

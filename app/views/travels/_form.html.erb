@@ -1,4 +1,5 @@
-<%= form_with(model: travel) do |form| %>
+<div class="container px-5 my-5">
+  <%= form_with(model: travel) do |form| %>
   <% if travel.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(travel.errors.count, "error") %> prohibited this travel from being saved:</h2>
@@ -10,23 +11,25 @@
       </ul>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div>
-    <%= form.label :start_date, style: "display: block" %>
-    <%= form.date_field :start_date %>
-  </div>
-
-  <div>
-    <%= form.label :finish_date, style: "display: block" %>
-    <%= form.date_field :finish_date %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+  <h1>Nuevo viaje</h1>
+  <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+      <div class="form-floating mb-3">
+          <%= form.text_field :name, autofocus: true, :class => "form-control", id: "Nombre_viaje", placeholder: "Nombre del viaje" %>
+          <%= form.label :floatingName, "Nombre del viaje" %>
+      </div>
+      <div class="form-floating mb-3">
+        <%= form.date_field :start_date, :class => "form-control", id: "fecha_salida", placeholder: "Fecha de salida"  %>
+        <%= form.label :fecha_salida,"Fecha de salida" ,style: "display: block" %>
+      </div>
+      <div class="form-floating mb-3">
+        <%= form.date_field :finish_date, :class => "form-control", id: "fecha_regreso", placeholder: "Fecha de regreso"  %>
+        <%= form.label :fecha_regreso,"Fecha de regreso" ,style: "display: block" %>
+      </div>
+      <div class="d-grid">
+        <%= form.submit "Registrar viaje", :class => "btn btn-primary w-50 py-2 rounded-pill mb-2" %>
+        <%= link_to "Volver a viajes", travels_path, :class => "btn btn-info w-50 py-2 rounded-pill mb-2" %>
+      </div>
+  </form>
+</div>
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 <% end %>
