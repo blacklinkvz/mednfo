@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_15_192440) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_19_002017) do
   create_table "articles", charset: "utf8mb4", force: :cascade do |t|
     t.string "title"
     t.bigint "user_id", null: false
     t.bigint "travel_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "key"
     t.index ["travel_id"], name: "index_articles_on_travel_id"
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
@@ -117,6 +118,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_15_192440) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "status"
     t.index ["user_id"], name: "index_travels_on_user_id"
   end
 

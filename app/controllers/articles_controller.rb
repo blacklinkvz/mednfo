@@ -13,6 +13,12 @@ class ArticlesController < ApplicationController
     @articles = Article.find(params[:id])
     @diseases = @article.diseases
     @destinies = @article.travel.destinies
+
+    # Validar que la ruta contenga el valor de key
+    unless params.require(:key) == @article.key
+      render json: { error: "Acceso no autorizado" }, status: 401
+    end
+
   end
 
   # GET /articles/new
@@ -31,9 +37,18 @@ class ArticlesController < ApplicationController
     @travel = Travel.where(user_id: current_user.id)
     @diseases = Disease.all
 
+    # Generar una key aleatoria
+    @article.key = SecureRandom.hex(10)
+
+  # Validar que el travel_id no esté ya usado
+
+
     respond_to do |format|
       if @article.save
-        format.html { redirect_to article_url(@article), notice: "Article was successfully created." }
+        # Guardar la key en la base de datos
+        @article.update_column(:key, @article.key)
+
+        format.html { redirect_to article_url(@article) + "?key=#{@article.key}", notice: "Article was successfully created." }
         format.json { render :show, status: :created, location: @article }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -73,7 +88,7 @@ class ArticlesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:title, :user_id, :travel_id)
+      params.require(:article).permit(:title, :user_id, :travel_id, :key)
     end
     def authenticate_user!
       redirect_to new_user_session_path, alert: "Tienes que registrarte o ingresar para continuar" unless user_signed_in?

@@ -6,4 +6,6 @@ class Article < ApplicationRecord
   has_many :contacts, through: :articles_contacts
   has_and_belongs_to_many :diseases
 
+  validates :travel_id, uniqueness: true
+
 end
