@@ -22,6 +22,7 @@
               <li><%= disease.name %></li>
             <% end %>
           </b></p>
+          <%= image_tag(url_for(article.qrcode)) %>
             <div class="btn-group gap-2">
               <% if current_user %>
                 <%= link_to "Editar articulo", edit_article_path(@article), :class =>"btn btn-sm btn-warning rounded-pill px-2" %>

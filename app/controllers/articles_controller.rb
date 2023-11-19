@@ -88,7 +88,7 @@ class ArticlesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:title, :user_id, :travel_id, :key)
+      params.require(:article).permit(:title, :user_id, :travel_id, :key, :qrcode)
     end
     def authenticate_user!
       redirect_to new_user_session_path, alert: "Tienes que registrarte o ingresar para continuar" unless user_signed_in?
