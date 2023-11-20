@@ -12,21 +12,21 @@
       </div>
     <% end %>
 
-  <h1>Agregar padecimiento a un articulo</h1><br> 
+  <h1>Editar padecimiento</h1> 
   <form id="contactForm">
     <div class="form-floating mb-3">
-      <%= form.collection_select :article_id, @articles.where(user_id: current_user.id), :id, :title, {:include_blank => 'Selecciona el articulo'}, {:class => 'form-select form-select-sm w-50'} %>   
+      <%= form.collection_select :article_id, @articles.where(user_id: current_user.id), :id, :title, {:include_blank => 'Selecciona el articulo'}, {:class => 'form-select w-50'} %>   
     </div>
 
     <div class="form-floating mb-3">
-      <%= form.collection_select :disease_id, @diseases, :id, :name, {:include_blank => 'Selecciona un padecimiento'}, {:class => 'form-select form-select-sm w-50'} %>
+      <%= form.collection_select :disease_id, @diseases, :id, :name, {:include_blank => 'Selecciona un padecimiento'}, {:class => 'form-select w-50'} %>
     </div>
     <div class="form-floating mb-3">
       <%= form.text_field :note, :class => "form-control w-50", id: "note", placeholder: "Nota"  %>
       <%= form.label :note, "Nota" ,style: "display: block" %>
     </div>
     <div class="d-grid">
-      <%= form.submit "Agregar", :class => "btn btn-primary w-25 rounded-pill mb-2" %>
+      <%= form.submit "Actualizar", :class => "btn btn-primary w-25 px-2 py-2 rounded-pill mb-2" %>
     </div>
       </form>
       </div>

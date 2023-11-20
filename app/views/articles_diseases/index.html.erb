@@ -1,14 +1,19 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Articles diseases</h1>
-
-<div id="articles_diseases">
-  <% @articles_diseases.each do |articles_disease| %>
+<div class="container py-3">
+  <main>
+    <%= link_to "Agregar padecimiento", new_articles_disease_path, :class => "btn btn-sm btn-primary rounded-pill px-2" %>
+     <table class="table table-primary mt-2">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Codigo</th>
+          <th scope="col">Enfermedad</th>
+          <th scope="col">Especificación</th>
+          <th scope="col">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+  <% @articles_diseases.sort_by { |articles_disease| articles_disease.article.title }.each do |articles_disease| %>
     <%= render articles_disease %>
-    <p>
-      <%= link_to "Show this articles disease", articles_disease %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New articles disease", new_articles_disease_path %>
+          <% end %>
+    </div>
+  </footer>

@@ -4,6 +4,7 @@ class MedicamentsController < ApplicationController
   # GET /medicaments or /medicaments.json
   def index
     @medicaments = Medicament.all
+    @units = Unit.all
   end
 
   # GET /medicaments/1 or /medicaments/1.json
@@ -13,6 +14,7 @@ class MedicamentsController < ApplicationController
   # GET /medicaments/new
   def new
     @medicament = Medicament.new
+    @units = Unit.all
   end
 
   # GET /medicaments/1/edit
@@ -22,7 +24,8 @@ class MedicamentsController < ApplicationController
   # POST /medicaments or /medicaments.json
   def create
     @medicament = Medicament.new(medicament_params)
-
+    @units = Unit.all
+    
     respond_to do |format|
       if @medicament.save
         format.html { redirect_to medicament_url(@medicament), notice: "Medicament was successfully created." }
@@ -66,5 +69,9 @@ class MedicamentsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def medicament_params
       params.require(:medicament).permit(:name, :compound, :unit_id)
+    end
+
+    def unit_options
+      Unit.all.map { |unit| [unit.name, unit.id] }
     end
 end

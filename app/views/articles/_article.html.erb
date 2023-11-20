@@ -1,20 +1,18 @@
-<% dom_id article %>
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-    <div class="col">
-      <div class="card shadow-sm">
-        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em"><%= article.title %></text></svg>
-        <div class="card-body">
-          <p class="card-text">Nombre del viaje: <b><%= article.travel.name %></b></p>
-          <div class="d-flex justify-content-between align-items-center">
+</main>
+        <tr class="table-light">  
+          <td></td>      
+          <td><%= article.title %></td>
+          <td><%= article.travel.name %></td>
+          <td><%= article.created_at.strftime("%d/%m/%Y") %></td>      
+          <td></td>
+          <td>
             <div class="btn-group">
-              <%= link_to "Ver artículo", url_for(controller: "articles", action: "show", id: article.id, key: article.key), :class => "btn btn-sm btn-primary rounded-pill px-2" %>
+            <%= link_to raw("<i class=\"bi bi-book\"></i>"), url_for(controller: "articles", action: "show", id: article.id, key: article.key), :class => "btn btn-sm btn-success rounded-pill px-2 mr-1" %>
+             <%= link_to raw("<i class=\"bi bi-pencil-square\"></i>"),  edit_article_path(article), :class => "btn btn-sm btn-primary rounded-pill mr-1" %>
+             <%= button_to raw("<i class=\"bi bi-trash\"></i>"), article, method: :delete, :class => "btn btn-sm btn-danger rounded-pill" %>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-  </div>
-
+          </td>
+        </tr>
+      </tbody>
+ </div>
 </main>

@@ -1,32 +1,12 @@
-<div id="<%= dom_id contact %>">
-  <p>
-    <strong>Name:</strong>
-    <%= contact.name %>
-  </p>
-
-  <p>
-    <strong>Lastname:</strong>
-    <%= contact.lastname %>
-  </p>
-
-  <p>
-    <strong>Email:</strong>
-    <%= contact.email %>
-  </p>
-
-  <p>
-    <strong>Phone:</strong>
-    <%= contact.phone %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= contact.user_id %>
-  </p>
-
-  <p>
-    <strong>Country:</strong>
-    <%= contact.country_id %>
-  </p>
-
-</div>
+        <tr class="table-light">
+          <td><%= contact.name %></td>
+          <td><%= contact.lastname %></td>
+          <td><%= contact.country.name %></td>
+          <td><%= contact.email %></td>      
+          <td><%= contact.phone %></td>
+          
+          <td> <%= link_to "Ver detalle", contact, :class => "w-30 btn btn-sm btn-primary rounded-pill px-2" %></td>
+        </tr>
+      </tbody>
+ </div>
+</main>

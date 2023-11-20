@@ -15,14 +15,50 @@
             </p>
           </div>
           <div class="d-flexalign-items-center">
-          <h3>Enfermedades:</h3>
-          <p class="card-text"><b>
-            <% @diseases.each do |disease| %>
-            
-              <li><%= disease.name %></li>
-            <% end %>
-          </b></p>
-          <%= image_tag(url_for(article.qrcode)) %>
+          <h3>Padecimientos:</h3>
+
+          <table class="table table-primary mt-2 w-75">
+            <thead>
+              <tr>
+                <th scope="col">ICD-10</th>
+                <th scope="col">Enfermedad</th>
+                <th scope="col">Especificaciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @diseases.each do |disease| %>
+                <tr class="table-light">
+                  <td><%= disease.code %></td>
+                  <td><%= disease.name %></td>
+                 <td></td>
+                </tr>
+                <% end %>
+            </tbody>
+          </table> 
+
+          <div class="d-flexalign-items-center">
+          <h3>Medicamentos:</h3>
+
+          <table class="table table-primary mt-2 w-75">
+            <thead>
+              <tr>
+                <th scope="col">Nombre comercial</th>
+                <th scope="col">Compuesto</th>
+                <th scope="col">Cantidad</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @medicaments.each do |medicament| %>
+                <tr class="table-light">
+                  <td><%= medicament.name %></td>
+                  <td><%= medicament.compound %></td>
+                 <td></td>
+                </tr>
+                <% end %>
+            </tbody>
+          </table> 
+
+          
             <div class="btn-group gap-2">
               <% if current_user %>
                 <%= link_to "Editar articulo", edit_article_path(@article), :class =>"btn btn-sm btn-warning rounded-pill px-2" %>
@@ -31,8 +67,11 @@
               <% else %>
                 <%= link_to "Volver a lista de articulos", articles_path, :class =>"btn btn-sm btn-info rounded-pill px-2" %>
               <% end %>
+              
             </div>
+            
           </div>
+          <%= image_tag(url_for(article.qrcode)) %>
         </div>
       </div>
     </div>

@@ -1,9 +1,11 @@
 class ArticlesMedicamentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_articles_medicament, only: %i[ show edit update destroy ]
 
   # GET /articles_medicaments or /articles_medicaments.json
   def index
     @articles_medicaments = ArticlesMedicament.all
+    @articles = Article.where(user_id: current_user.id)
   end
 
   # GET /articles_medicaments/1 or /articles_medicaments/1.json
@@ -13,6 +15,8 @@ class ArticlesMedicamentsController < ApplicationController
   # GET /articles_medicaments/new
   def new
     @articles_medicament = ArticlesMedicament.new
+    @articles = Article.where(user_id: current_user.id)
+    @medicaments = Medicament.all
   end
 
   # GET /articles_medicaments/1/edit
@@ -22,6 +26,8 @@ class ArticlesMedicamentsController < ApplicationController
   # POST /articles_medicaments or /articles_medicaments.json
   def create
     @articles_medicament = ArticlesMedicament.new(articles_medicament_params)
+    @medicaments = Medicament.all
+    @articles = Article.where(user_id: current_user.id)
 
     respond_to do |format|
       if @articles_medicament.save
@@ -65,6 +71,10 @@ class ArticlesMedicamentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def articles_medicament_params
-      params.require(:articles_medicament).permit(:article_id, :medicament_id)
+      params.require(:articles_medicament).permit(:article_id, :medicament_id, :quantity)
+    end
+
+    def authenticate_user!
+      redirect_to new_user_session_path, alert: "Tienes que registrarte o ingresar para continuar" unless user_signed_in?
     end
 end

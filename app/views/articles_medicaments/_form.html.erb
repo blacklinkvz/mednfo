@@ -1,3 +1,4 @@
+<div class="container px-5 my-5 w-50">
 <%= form_with(model: articles_medicament) do |form| %>
   <% if articles_medicament.errors.any? %>
     <div style="color: red">
@@ -11,17 +12,22 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :article_id, style: "display: block" %>
-    <%= form.text_field :article_id %>
-  </div>
+  <h1>Agregar padecimiento a un articulo</h1><br> 
+  <form id="contactForm">
+    <div class="form-floating mb-3">
+      <%= form.collection_select :article_id, @articles.where(user_id: current_user.id), :id, :title, {:include_blank => 'Selecciona el articulo'}, {:class => 'form-select form-select-sm w-50'} %>   
+    </div>
 
-  <div>
-    <%= form.label :medicament_id, style: "display: block" %>
-    <%= form.text_field :medicament_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+    <div class="form-floating mb-3">
+<%= form.collection_select :medicament_id, @medicaments, :id, -> (medicament) { [medicament.name, medicament.compound].join(" - Compuesto: ") }, {:include_blank => 'Selecciona un medicamento'}, {:class => 'form-select form-select-sm w-50'} %>    </div>
+    <div class="form-floating mb-3">
+      <%= form.text_field :quantity, :class => "form-control w-50", id: "Cantidad", placeholder: "Cantidad"  %>
+      <%= form.label :quantity, "Cantidad" ,style: "display: block" %>
+    </div>
+    <div class="d-grid">
+      <%= form.submit "Agregar", :class => "btn btn-primary w-25 rounded-pill mb-2" %>
+    </div>
+      </form>
+      </div>
+      <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    <% end %>

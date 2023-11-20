@@ -4,13 +4,14 @@ class ArticlesDiseasesController < ApplicationController
 
   # GET /articles_diseases or /articles_diseases.json
   def index
-    @articles_diseases = ArticlesDisease.all
     @diseases = Disease.all
     @articles = Article.where(user_id: current_user.id)
+    @articles_diseases = ArticlesDisease.all
   end
 
   # GET /articles_diseases/1 or /articles_diseases/1.json
   def show
+    @articles_diseases = ArticlesDisease.all
   end
 
   # GET /articles_diseases/new
@@ -75,7 +76,7 @@ class ArticlesDiseasesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def articles_disease_params
-      params.require(:articles_disease).permit(:article_id, :disease_id)
+      params.require(:articles_disease).permit(:article_id, :disease_id, :note)
     end
     
     def authenticate_user!

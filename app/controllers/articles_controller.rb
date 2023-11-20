@@ -12,8 +12,9 @@ class ArticlesController < ApplicationController
   def show
     @articles = Article.find(params[:id])
     @diseases = @article.diseases
-    @destinies = @article.travel.destinies
-
+    @destinies = @article.travel.destinies 
+    @medicaments = @article.medicaments
+    
     # Validar que la ruta contenga el valor de key
     unless params.require(:key) == @article.key
       render json: { error: "Acceso no autorizado" }, status: 401
