@@ -1,4 +1,5 @@
-<%= form_with(model: articles_contact) do |form| %>
+<div class="container px-5 my-5">
+  <%= form_with(model: articles_contact) do |form| %>
   <% if articles_contact.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(articles_contact.errors.count, "error") %> prohibited this articles_contact from being saved:</h2>
@@ -11,17 +12,22 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :article_id, style: "display: block" %>
-    <%= form.text_field :article_id %>
-  </div>
+  <h1>Agregar contacto al articulo</h1>
+  <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+      <div class="form-floating mb-3">
+        <%= form.collection_select :article_id, @articles.where(user_id: current_user.id), :id, :title, {:include_blank => 'Selecciona el articulo'}, {:class => 'form-select form-select-sm w-50'} %>   
+      </div>
+      <div class="form-floating mb-3">
+        <%= form.collection_select :contact_id, @contacts.where(user_id: current_user.id), :id, :name, {:include_blank => 'Selecciona el contacto'}, {:class => 'form-select form-select-sm w-50'} %>   
+      </div>
+      <div class="form-floating mb-3">
 
-  <div>
-    <%= form.label :contact_id, style: "display: block" %>
-    <%= form.text_field :contact_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+      </div>
+      <div class="d-grid">
+        <%= form.submit "Asignar", :class => "btn btn-primary w-50 py-2 rounded-pill mb-2" %>
+        <%= link_to "Volver a contactos", contacts_path, :class => "btn btn-info w-50 py-2 rounded-pill mb-2" %>
+      </div>
+  </form>
+</div>
+<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 <% end %>

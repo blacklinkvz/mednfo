@@ -13,6 +13,8 @@ class ArticlesContactsController < ApplicationController
   # GET /articles_contacts/new
   def new
     @articles_contact = ArticlesContact.new
+    @articles = Article.where(user_id: current_user.id)
+    @contacts = Contact.where(user_id: current_user.id)
   end
 
   # GET /articles_contacts/1/edit
@@ -21,6 +23,7 @@ class ArticlesContactsController < ApplicationController
 
   # POST /articles_contacts or /articles_contacts.json
   def create
+    @articles = Article.where(user_id: current_user.id)
     @articles_contact = ArticlesContact.new(articles_contact_params)
 
     respond_to do |format|

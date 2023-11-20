@@ -11,7 +11,19 @@
     <li><%= link_to "Viajes", travels_path, :class => "nav-link px-2 link-secondary" %></li>
     <li><%= link_to "Destinos", destinies_path, :class => "nav-link px-2 link-secondary" %></li>
     <li><%= link_to "Contactos", contacts_path, :class => "nav-link px-2 link-secondary" %></li>
-    <li><%= link_to "Articulos", articles_path, :class => "nav-link px-2 link-secondary" %></li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Articulos
+      </a>
+      <ul class="dropdown-menu">
+        <li><%= link_to "Lista de artículos", articles_path, :class => "nav-link px-2 link-secondary" %></li>
+        <li><%= link_to "Crear nuevo artículo", new_article_path, :class => "nav-link px-2 link-secondary" %></li>
+        <li><%= link_to "Asignar padecimientos", new_articles_disease_path, :class => "nav-link px-2 link-secondary" %></li>
+        <li><%= link_to "Asignar medicamentos", new_articles_medicament_path, :class => "nav-link px-2 link-secondary" %></li>
+        <li><%= link_to "Asignar contactos", new_articles_contact_path, :class => "nav-link px-2 link-secondary" %></li>
+      </ul>
+    </li>
+    
   </ul>
 
   <div class="btn-group gap-2">
