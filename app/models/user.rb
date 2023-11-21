@@ -8,4 +8,21 @@ class User < ApplicationRecord
   belongs_to :bloodtype
   has_many :contact
   has_many :articles
+
+  validates :rut, presence: true, uniqueness: true, length: { maximum: 10 },
+	format: {
+		with: /^\d\.\d\d*\-(\d|k|K)$|\d{1,9}\-(\d|k|K)$/,
+		multiline: true,
+		message: :invalid
+	}
+
+  validates :email, presence: true, uniqueness: true,
+  format: {
+      with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i,
+      message: :invalid
+  }
+
+  validates :password_digest, presence: true, length: { minimum: 6 }
+
+  validates :passport, uniqueness: true
 end

@@ -98,7 +98,17 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                   </div>
                   <div id="imp1" class="modal-body">
-                    <%= image_tag(url_for(article.qrcode)) %>
+                    <table>
+                      <thead>
+                        <tr>
+                          <td rowspan="2"><%= image_tag(url_for(article.qrcode)) %></td>
+                          <td>Datos usuario</td>
+                        </tr>
+                        <tr>
+                          <td>mas info</td>
+                        </tr>
+                      </thead>
+                      </table>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-sm btn-secondary rounded-pill px-2" data-bs-dismiss="modal">Cerrar</button>
