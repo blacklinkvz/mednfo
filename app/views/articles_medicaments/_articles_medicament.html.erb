@@ -1,12 +1,16 @@
-<div id="<%= dom_id articles_medicament %>">
-  <p>
-    <strong>Article:</strong>
-    <%= articles_medicament.article_id %>
-  </p>
-
-  <p>
-    <strong>Medicament:</strong>
-    <%= articles_medicament.medicament_id %>
-  </p>
-
+<tr class="table-light">
+         
+  <td><%= articles_medicament.medicament.name %></td>
+  <td><%= articles_medicament.medicament.name %></td>
+  <td><%= articles_medicament.medicament.unit.name %></td>      
+  <td><%= articles_medicament.quantity %></td>
+  <td>
+    <div class="btn-group">
+     <%= link_to raw("<i class=\"bi bi-pencil-square\"></i>"),  edit_articles_disease_path(articles_medicament), :class => "btn btn-sm btn-primary rounded-pill mr-1" %>
+     <%= button_to raw("<i class=\"bi bi-trash\"></i>"), articles_medicament, method: :delete, :class => "btn btn-sm btn-danger rounded-pill" %>
+    </div>
+  </td>
+</tr>
+</tbody>
 </div>
+</main>

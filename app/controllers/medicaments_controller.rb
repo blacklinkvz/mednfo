@@ -19,6 +19,7 @@ class MedicamentsController < ApplicationController
 
   # GET /medicaments/1/edit
   def edit
+    @units = Unit.all
   end
 
   # POST /medicaments or /medicaments.json

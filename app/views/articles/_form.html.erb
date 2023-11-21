@@ -1,4 +1,5 @@
-<%= form_with(model: article) do |form| %>
+<div class="container px-5 my-5">
+  <%= form_with(model: article) do |form| %>
   <% if article.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
@@ -10,23 +11,21 @@
       </ul>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+  
+    <h1>Crear articulo</h1>
+    <form id="contactForm">
+      <div class="form-floating mb-3">
+        <%= form.text_field :title, autofocus: true, :class => "form-control w-50", id: "title", placeholder: "Título" %>
+        <%= form.label :title, "Título" %>     
+      </div>
+      <div class="form-floating mb-3">
+        <%= form.collection_select :travel_id, @travel, :id, :name, {:include_blank => 'Viaje'}, {:class => 'form-select w-50'} %>
+      </div>
+        <div class="d-grid">
+          <%= form.submit "Registrar", :class => "btn btn-primary btn-sm w-25 py-2 rounded-pill mb-2" %>
+          <%= link_to "Volver", articles_path, :class => "btn btn-info btn-sm w-25 py-2 rounded-pill mb-2" %>
+        </div>
+    </form>
   </div>
-
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div>
-    <%= form.label :travel_id, style: "display: block" %>
-    <%= form.text_field :travel_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+  <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+  <% end %>

@@ -10,7 +10,6 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1 or /articles/1.json
   def show
-        
     # Validar que la ruta contenga el valor de key
     unless params.require(:key) == @article.key
       render json: { error: "Acceso no autorizado" }, status: 401
@@ -22,6 +21,8 @@ class ArticlesController < ApplicationController
   def new
     @article = Article.new
     @diseases = Disease.all
+    @travel = Travel.where(user_id: current_user.id)
+
   end
 
   # GET /articles/1/edit

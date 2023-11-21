@@ -1,14 +1,19 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Articles medicaments</h1>
-
-<div id="articles_medicaments">
-  <% @articles_medicaments.each do |articles_medicament| %>
+<div class="container py-3">
+  <main>
+    <%= link_to "Agregar medicamento a un artículo", new_articles_medicament_path, :class => "btn btn-sm btn-primary rounded-pill px-2" %>
+     <table class="table table-primary mt-2">
+      <thead>
+        <tr>
+          <th scope="col">Medicamento</th>
+          <th scope="col">Cantidad</th>
+          <th scope="col">Unidad</th>
+          <th scope="col">Artículo</th>
+          <th scope="col">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+  <% @articles_medicaments.sort_by { |articles_medicaments| articles_medicaments.article.title }.each do |articles_medicament| %>
     <%= render articles_medicament %>
-    <p>
-      <%= link_to "Show this articles medicament", articles_medicament %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New articles medicament", new_articles_medicament_path %>
+          <% end %>
+    </div>
+  </footer>

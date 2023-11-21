@@ -4,12 +4,14 @@ class ArticlesMedicamentsController < ApplicationController
 
   # GET /articles_medicaments or /articles_medicaments.json
   def index
+    @medicaments = Medicament.all
     @articles_medicaments = ArticlesMedicament.all
     @articles = Article.where(user_id: current_user.id)
   end
 
   # GET /articles_medicaments/1 or /articles_medicaments/1.json
   def show
+    @articles_medicaments = ArticlesMedicament.all
   end
 
   # GET /articles_medicaments/new
@@ -21,6 +23,7 @@ class ArticlesMedicamentsController < ApplicationController
 
   # GET /articles_medicaments/1/edit
   def edit
+    @articles = Article.where(user_id: current_user.id)
   end
 
   # POST /articles_medicaments or /articles_medicaments.json
@@ -31,7 +34,7 @@ class ArticlesMedicamentsController < ApplicationController
 
     respond_to do |format|
       if @articles_medicament.save
-        format.html { redirect_to articles_medicament_url(@articles_medicament), notice: "Articles medicament was successfully created." }
+        format.html { redirect_to articles_medicaments_path, notice: "Articles medicament was successfully created." }
         format.json { render :show, status: :created, location: @articles_medicament }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -44,7 +47,7 @@ class ArticlesMedicamentsController < ApplicationController
   def update
     respond_to do |format|
       if @articles_medicament.update(articles_medicament_params)
-        format.html { redirect_to articles_medicament_url(@articles_medicament), notice: "Articles medicament was successfully updated." }
+        format.html { redirect_to articles_medicament_path, notice: "Articles medicament was successfully updated." }
         format.json { render :show, status: :ok, location: @articles_medicament }
       else
         format.html { render :edit, status: :unprocessable_entity }

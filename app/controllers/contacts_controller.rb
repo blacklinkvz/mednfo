@@ -10,7 +10,6 @@ class ContactsController < ApplicationController
 
   # GET /contacts/1 or /contacts/1.json
   def show
-    @contact = Contact.find(params[:id])
     @countries = Country.all
     if @contact.user_id != current_user.id
       redirect_to root_path, notice: "No tienes acceso a este contacto"
@@ -25,6 +24,7 @@ class ContactsController < ApplicationController
 
   # GET /contacts/1/edit
   def edit
+    @countries = Country.all
   end
 
   # POST /contacts or /contacts.json
@@ -35,7 +35,7 @@ class ContactsController < ApplicationController
     respond_to do |format|
       if @contact.save
 
-        format.html { redirect_to contact_url(@contact), notice: "Contact was successfully created." }
+        format.html { redirect_to contacts_path, notice: "Contact was successfully created." }
         format.json { render :show, status: :created, location: @contact }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -48,7 +48,7 @@ class ContactsController < ApplicationController
   def update
     respond_to do |format|
       if @contact.update(contact_params)
-        format.html { redirect_to contact_url(@contact), notice: "Contact was successfully updated." }
+        format.html { redirect_to contacts_path, notice: "Contact was successfully updated." }
         format.json { render :show, status: :ok, location: @contact }
       else
         format.html { render :edit, status: :unprocessable_entity }

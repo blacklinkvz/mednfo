@@ -35,7 +35,7 @@ class ArticlesDiseasesController < ApplicationController
 
     respond_to do |format|
       if @articles_disease.save
-        format.html { redirect_to articles_disease_url(@articles_disease), notice: "Articles disease was successfully created." }
+        format.html { redirect_to articles_diseases_path, notice: "Articles disease was successfully created." }
         format.json { render :show, status: :created, location: @articles_disease }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -49,7 +49,7 @@ class ArticlesDiseasesController < ApplicationController
     @articles = Article.where(user_id: current_user.id)
     respond_to do |format|
       if @articles_disease.update(articles_disease_params)
-        format.html { redirect_to articles_disease_url(@articles_disease), notice: "Articles disease was successfully updated." }
+        format.html { redirect_to articles_diseases_path, notice: "Articles disease was successfully updated." }
         format.json { render :show, status: :ok, location: @articles_disease }
       else
         format.html { render :edit, status: :unprocessable_entity }

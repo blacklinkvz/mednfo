@@ -1,14 +1,19 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Articles contacts</h1>
-
-<div id="articles_contacts">
-  <% @articles_contacts.each do |articles_contact| %>
+<div class="container py-3">
+  <main>
+    <%= link_to "Agregar padecimiento", new_articles_contact_path, :class => "btn btn-sm btn-primary rounded-pill px-2" %>
+     <table class="table table-primary mt-2">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellido</th>
+          <th scope="col">País</th>
+          <th scope="col">En artículo</th>
+          <th scope="col">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+  <% @articles_contacts.sort_by { |articles_contact| articles_contact.article.title }.each do |articles_contact| %>
     <%= render articles_contact %>
-    <p>
-      <%= link_to "Show this articles contact", articles_contact %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New articles contact", new_articles_contact_path %>
+          <% end %>
+        </div>
+  </footer>

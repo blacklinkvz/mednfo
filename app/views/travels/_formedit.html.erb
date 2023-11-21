@@ -14,20 +14,20 @@
   <h1>Editar viaje</h1>
   <form id="contactForm" data-sb-form-api-token="API_TOKEN">
       <div class="form-floating mb-3">
-          <%= form.text_field :name, autofocus: true, :class => "form-control", id: "Nombre_viaje", placeholder: "Nombre del viaje" %>
+          <%= form.text_field :name, autofocus: true, :class => "form-control w-50", id: "Nombre_viaje", placeholder: "Nombre del viaje" %>
           <%= form.label :floatingName, "Nombre del viaje" %>
       </div>
       <div class="form-floating mb-3">
-        <%= form.date_field :start_date, :class => "form-control", id: "fecha_salida", placeholder: "Fecha de salida"  %>
+        <%= form.date_field :start_date, :class => "form-control w-50", id: "fecha_salida", placeholder: "Fecha de salida"  %>
         <%= form.label :fecha_salida,"Fecha de salida" ,style: "display: block" %>
       </div>
       <div class="form-floating mb-3">
-        <%= form.date_field :finish_date, :class => "form-control", id: "fecha_regreso", placeholder: "Fecha de regreso"  %>
+        <%= form.date_field :finish_date, :class => "form-control w-50", id: "fecha_regreso", placeholder: "Fecha de regreso"  %>
         <%= form.label :fecha_regreso,"Fecha de regreso" ,style: "display: block" %>
       </div>
       <div class="d-grid">
-        <%= form.submit "Editar viaje", :class => "btn btn-primary w-50 py-2 rounded-pill mb-2" %>
-        <%= link_to "Volver a viajes", travels_path, :class => "btn btn-info w-50 py-2 rounded-pill mb-2" %>
+        <%= form.submit "Editar", :class => "btn btn-primary btn-sm w-25 py-2 rounded-pill mb-2" %>
+        <%= link_to "Volver", travels_path, :class => "btn btn-info btn-sm w-25 py-2 rounded-pill mb-2" %>
       </div>
   </form>
 </div>

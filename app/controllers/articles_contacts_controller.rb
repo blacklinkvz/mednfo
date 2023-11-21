@@ -19,16 +19,20 @@ class ArticlesContactsController < ApplicationController
 
   # GET /articles_contacts/1/edit
   def edit
+    @articles = Article.where(user_id: current_user.id)
+    @contacts = Contact.where(user_id: current_user.id)
+
   end
 
   # POST /articles_contacts or /articles_contacts.json
   def create
     @articles = Article.where(user_id: current_user.id)
+    #@contacts = Contact.where(user_id: current_user.id)
     @articles_contact = ArticlesContact.new(articles_contact_params)
 
     respond_to do |format|
       if @articles_contact.save
-        format.html { redirect_to articles_contact_url(@articles_contact), notice: "Articles contact was successfully created." }
+        format.html { redirect_to articles_contact_path, notice: "Articles contact was successfully created." }
         format.json { render :show, status: :created, location: @articles_contact }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -41,7 +45,7 @@ class ArticlesContactsController < ApplicationController
   def update
     respond_to do |format|
       if @articles_contact.update(articles_contact_params)
-        format.html { redirect_to articles_contact_url(@articles_contact), notice: "Articles contact was successfully updated." }
+        format.html { redirect_to articles_contact_path, notice: "Articles contact was successfully updated." }
         format.json { render :show, status: :ok, location: @articles_contact }
       else
         format.html { render :edit, status: :unprocessable_entity }

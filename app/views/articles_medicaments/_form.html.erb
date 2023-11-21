@@ -12,14 +12,15 @@
     </div>
   <% end %>
 
-  <h1>Agregar padecimiento a un articulo</h1><br> 
+  <h1>Agregar medicamento a un articulo</h1><br> 
   <form id="contactForm">
     <div class="form-floating mb-3">
-      <%= form.collection_select :article_id, @articles.where(user_id: current_user.id), :id, :title, {:include_blank => 'Selecciona el articulo'}, {:class => 'form-select form-select-sm w-50'} %>   
+      <%= form.collection_select :article_id, @articles.where(user_id: current_user.id), :id, :title, {:include_blank => 'Selecciona el artiíulo'}, {:class => 'form-select form-select-sm w-50'} %>   
     </div>
 
     <div class="form-floating mb-3">
-<%= form.collection_select :medicament_id, @medicaments, :id, -> (medicament) { [medicament.name, medicament.compound].join(" - Compuesto: ") }, {:include_blank => 'Selecciona un medicamento'}, {:class => 'form-select form-select-sm w-50'} %>    </div>
+      <%= form.collection_select :medicament_id, @medicaments, :id, -> (medicament) { [medicament.name, medicament.compound].join(" - Compuesto: ") }, {:include_blank => 'Selecciona un medicamento'}, {:class => 'form-select form-select-sm w-50'} %> 
+    </div>
     <div class="form-floating mb-3">
       <%= form.text_field :quantity, :class => "form-control w-50", id: "Cantidad", placeholder: "Cantidad"  %>
       <%= form.label :quantity, "Cantidad" ,style: "display: block" %>
