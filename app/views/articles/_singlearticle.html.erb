@@ -59,6 +59,7 @@
 
                 </tr>
                 <% end %>
+          </table>
 
                 <div class="d-flexalign-items-center">
                   <h3>Contactos:</h3>
@@ -97,15 +98,20 @@
                     <h5 class="modal-title" id="myModalLabel">Imprimir QR</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                   </div>
+                  
                   <div id="imp1" class="modal-body">
                     <table>
                       <thead>
                         <tr>
                           <td rowspan="2"><%= image_tag(url_for(article.qrcode)) %></td>
-                          <td>Datos usuario</td>
+                          <td><p>En caso de pérdida de conciencia, escanee este código QR
+
+                          Este código QR contiene información importante sobre mi salud y tratamiento.
+
+                          Por favor, trátelo con discreción.</td>
                         </tr>
                         <tr>
-                          <td>mas info</td>
+                          <td></td>
                         </tr>
                       </thead>
                       </table>
