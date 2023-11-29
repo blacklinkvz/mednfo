@@ -11,7 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2023_11_19_181855) do
-  create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
+  create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_19_181855) do
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", charset: "utf8mb4", force: :cascade do |t|
+  create_table "active_storage_blobs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -33,13 +33,13 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_19_181855) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "active_storage_variant_records", charset: "utf8mb4", force: :cascade do |t|
+  create_table "active_storage_variant_records", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "articles", charset: "utf8mb4", force: :cascade do |t|
+  create_table "articles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.bigint "user_id", null: false
     t.bigint "travel_id", null: false
@@ -50,7 +50,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_19_181855) do
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
-  create_table "articles_contacts", charset: "utf8mb4", force: :cascade do |t|
+  create_table "articles_contacts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "article_id", null: false
     t.bigint "contact_id", null: false
     t.datetime "created_at", null: false
@@ -59,7 +59,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_19_181855) do
     t.index ["contact_id"], name: "index_articles_contacts_on_contact_id"
   end
 
-  create_table "articles_diseases", charset: "utf8mb4", force: :cascade do |t|
+  create_table "articles_diseases", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "article_id", null: false
     t.bigint "disease_id", null: false
     t.datetime "created_at", null: false
@@ -69,7 +69,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_19_181855) do
     t.index ["disease_id"], name: "index_articles_diseases_on_disease_id"
   end
 
-  create_table "articles_medicaments", charset: "utf8mb4", force: :cascade do |t|
+  create_table "articles_medicaments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "article_id", null: false
     t.bigint "medicament_id", null: false
     t.datetime "created_at", null: false
@@ -79,13 +79,13 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_19_181855) do
     t.index ["medicament_id"], name: "index_articles_medicaments_on_medicament_id"
   end
 
-  create_table "bloodtypes", charset: "utf8mb4", force: :cascade do |t|
+  create_table "bloodtypes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "contacts", charset: "utf8mb4", force: :cascade do |t|
+  create_table "contacts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "lastname"
     t.string "email"
@@ -98,7 +98,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_19_181855) do
     t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 
-  create_table "countries", charset: "utf8mb4", force: :cascade do |t|
+  create_table "countries", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "alpha3_code"
     t.bigint "language_id", null: false
@@ -107,7 +107,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_19_181855) do
     t.index ["language_id"], name: "index_countries_on_language_id"
   end
 
-  create_table "destinies", charset: "utf8mb4", force: :cascade do |t|
+  create_table "destinies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.date "start_date"
     t.date "fishis_date"
     t.bigint "country_id", null: false
@@ -118,21 +118,21 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_19_181855) do
     t.index ["travel_id"], name: "index_destinies_on_travel_id"
   end
 
-  create_table "diseases", charset: "utf8mb4", force: :cascade do |t|
+  create_table "diseases", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "languages", charset: "utf8mb4", force: :cascade do |t|
+  create_table "languages", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "medicaments", charset: "utf8mb4", force: :cascade do |t|
+  create_table "medicaments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "compound"
     t.bigint "unit_id", null: false
@@ -141,7 +141,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_19_181855) do
     t.index ["unit_id"], name: "index_medicaments_on_unit_id"
   end
 
-  create_table "travels", charset: "utf8mb4", force: :cascade do |t|
+  create_table "travels", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.date "start_date"
     t.date "finish_date"
@@ -152,13 +152,13 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_19_181855) do
     t.index ["user_id"], name: "index_travels_on_user_id"
   end
 
-  create_table "units", charset: "utf8mb4", force: :cascade do |t|
+  create_table "units", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", charset: "utf8mb4", force: :cascade do |t|
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -184,7 +184,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_19_181855) do
     t.index ["usertype_id"], name: "index_users_on_usertype_id"
   end
 
-  create_table "usertypes", charset: "utf8mb4", force: :cascade do |t|
+  create_table "usertypes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

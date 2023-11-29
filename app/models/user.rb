@@ -22,7 +22,5 @@ class User < ApplicationRecord
       message: :invalid
   }
 
-  validates :password_digest, presence: true, length: { minimum: 6 }
-
-  validates :passport, uniqueness: true
+  validates :passport, uniqueness: true, presence: true, length: { minimum: 6 }
 end
