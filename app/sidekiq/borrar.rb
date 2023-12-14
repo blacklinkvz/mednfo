@@ -1,4 +1,4 @@
-class DeleteExpiredArticlesJob
+class Borrar
   include Sidekiq::Job
 
   def perform
@@ -12,7 +12,7 @@ class DeleteExpiredArticlesJob
     end
     
     #Programación.
-    DeleteExpiredArticlesJob.perform_at(24.hours.from_now)
+    Borrar.perform_at(24.hours.from_now)
 
   end
 end

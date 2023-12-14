@@ -27,6 +27,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
+    @travel = Travel.all
   end
 
   # POST /articles or /articles.json
@@ -70,6 +71,7 @@ class ArticlesController < ApplicationController
 
   # DELETE /articles/1 or /articles/1.json
   def destroy
+    article_id = @article
     @article.destroy!
 
     respond_to do |format|

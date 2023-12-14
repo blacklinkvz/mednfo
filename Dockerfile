@@ -1,8 +1,7 @@
 # syntax = docker/dockerfile:1
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
-ARG RUBY_VERSION=3.2.2
-FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
+FROM ruby:3.2.2 as base
 
 # Rails app lives here
 WORKDIR /rails
@@ -18,8 +17,8 @@ ENV RAILS_ENV="production" \
 FROM base as build
 
 # Install packages needed to build gems and node modules
-RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential curl default-libmysqlclient-dev git libvips node-gyp pkg-config python-is-python3
+
+RUN apt-get update -qq && apt-get install -y build-essential curl git apt-utils libvips libpq-dev  libmariadb-dev-compat libmariadb-dev nodejs pkg-config python-is-python3 node-gyp
 
 # Install JavaScript dependencies
 ARG NODE_VERSION=20.9.0
@@ -54,9 +53,9 @@ RUN bundle exec bootsnap precompile app/ lib/
 FROM base
 
 # Install packages needed for deployment
-RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y curl default-mysql-client libvips && \
-    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+#RUN apt-get update -qq && \
+#    apt-get install --no-install-recommends -y curl default-mysql-client libvips && \
+#    rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Copy built artifacts: gems, application
 COPY --from=build /usr/local/bundle /usr/local/bundle

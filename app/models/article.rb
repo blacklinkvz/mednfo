@@ -4,20 +4,21 @@ class Article < ApplicationRecord
 
   
   has_many :articles_medicaments, dependent: :destroy #Borrar en cascada
-  has_many :medicaments, through: :articles_medicaments
+  has_many :medicaments, through: :articles_medicaments, dependent: :destroy
 
+  has_many :diseases, through: :articles_diseases, dependent: :destroy
   has_many :articles_diseases, dependent: :destroy #Borrar en cascada
-  has_many :diseases, through: :articles_diseases
+  
   
   has_many :articles_contacts, dependent: :destroy #Borrar en cascada
-  has_many :contacts, through: :articles_contacts
+  has_many :contacts, through: :articles_contacts, dependent: :destroy
   
   has_and_belongs_to_many :diseases
 
   validates :travel_id, uniqueness: true
 
   has_one_attached :qrcode, dependent: :destroy #Borrar en cascada
-  before_commit :generate_qrcode, on: :create
+  before_commit :generate_qrcode, on: :create, dependent: :destroy
 
   private
 
